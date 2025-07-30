@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Find All Single Numbers</title>
+  <title>Find First Single Number</title>
 </head>
 <body>
   <h3>Enter numbers (space-separated):</h3>
   <input type="text" id="numberInput" placeholder="e.g., 2 3 4 3 2 9 5">
-  <button onclick="findSingles()">Find Single Numbers</button>
+  <button onclick="findFirstSingle()">Find Single Number</button>
   <p id="result"></p>
 
   <script>
-    function findSingles() {
+    function findFirstSingle() {
       const input = document.getElementById("numberInput").value.trim();
       const numbers = input.split(" ").map(Number);
 
@@ -20,17 +20,16 @@
       }
 
       const freq = {};
-
       for (let num of numbers) {
         freq[num] = (freq[num] || 0) + 1;
       }
 
-      const singles = Object.keys(freq).filter(num => freq[num] === 1).map(Number);
+      const firstSingle = numbers.find(num => freq[num] === 1);
 
-      if (singles.length === 0) {
-        document.getElementById("result").textContent = "No single numbers found.";
+      if (firstSingle === undefined) {
+        document.getElementById("result").textContent = "No single number found.";
       } else {
-        document.getElementById("result").textContent = "Single numbers are: " + singles.join(", ");
+        document.getElementById("result").textContent = "First single number is: " + firstSingle;
       }
     }
   </script>
