@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Find First Single Number</title>
+  <title>Find First Unpaired Number</title>
 </head>
 <body>
   <h3>Enter numbers (space-separated):</h3>
-  <input type="text" id="numberInput" placeholder="e.g., 2 3 4 3 2 9 5">
-  <button onclick="findFirstSingle()">Find Single Number</button>
+  <input type="text" id="numberInput" placeholder="e.g., 1 2 3 2 1 1 3 4 4 4">
+  <button onclick="findFirstUnpaired()">Find First Unpaired Number</button>
   <p id="result"></p>
 
   <script>
-    function findFirstSingle() {
+    function findFirstUnpaired() {
       const input = document.getElementById("numberInput").value.trim();
       const numbers = input.split(" ").map(Number);
 
@@ -20,16 +20,19 @@
       }
 
       const freq = {};
+
+      // Count frequency of each number
       for (let num of numbers) {
         freq[num] = (freq[num] || 0) + 1;
       }
 
-      const firstSingle = numbers.find(num => freq[num] === 1);
+      // Find the first number with an odd frequency
+      const firstUnpaired = numbers.find(num => freq[num] % 2 === 1);
 
-      if (firstSingle === undefined) {
-        document.getElementById("result").textContent = "No single number found.";
+      if (firstUnpaired === undefined) {
+        document.getElementById("result").textContent = "No unpaired number found.";
       } else {
-        document.getElementById("result").textContent = "First single number is: " + firstSingle;
+        document.getElementById("result").textContent = "First unpaired number is: " + firstUnpaired;
       }
     }
   </script>
