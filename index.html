@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Single Number</title>
+</head>
+<body>
+  <h3>Enter numbers (space-separated):</h3>
+  <input type="text" id="numberInput" placeholder="e.g., 2 3 4 3 2">
+  <button onclick="findSingle()">Find Single Number</button>
+  <p id="result"></p>
+
+  <script>
+    function findSingle() {
+      const input = document.getElementById("numberInput").value.trim();
+      const numbers = input.split(" ").map(Number);
+
+      if (numbers.some(isNaN)) {
+        document.getElementById("result").textContent = "Invalid input. Please enter only numbers.";
+        return;
+      }
+
+      let result = 0;
+      for (let num of numbers) {
+        result ^= num;
+      }
+
+      document.getElementById("result").textContent = "Single number is: " + result;
+    }
+  </script>
+</body>
+</html>
